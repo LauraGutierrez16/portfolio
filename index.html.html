@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Global End-use Electrical Equipment Market Model, 2026–2035</title>
+<style>
+:root{--bg:#f6f4ef;--fg:#14232f;--mut:#5d666e;--card:#fff;--line:#dcd8cc;--acc:#e8743b;--blue:#2b7a9b;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b24;--fg:#eef1f3;--mut:#a9b8c4;--card:#172833;--line:#2c4150;--acc:#f08a4b;--blue:#5fb0cf;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1b24;--fg:#eef1f3;--mut:#a9b8c4;--card:#172833;--line:#2c4150;--acc:#f08a4b;--blue:#5fb0cf;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:28px 20px 48px}h1{font-size:clamp(24px,4vw,36px);line-height:1.15;margin:0 0 6px}
+.sub{color:var(--mut);margin:0 0 22px}.who{margin:0 0 14px;color:var(--mut);font-size:15px}.who a{color:var(--fg);font-weight:600}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.kpi b{display:block;font-size:28px;color:var(--acc);line-height:1.1}.kpi span{color:var(--mut);font-size:14px}
+.ctrl{margin:14px 0;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}label{display:block;font-size:14px;color:var(--mut)}label output{color:var(--fg);font-weight:600}input[type=range]{width:100%;accent-color:var(--acc)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:7px 14px;cursor:pointer}button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#14232f;font-weight:600}
+.chart{position:relative;height:420px}.note{color:var(--mut);font-size:14px}h2{font-size:20px;margin:28px 0 8px}ul{padding-left:20px;margin:6px 0}li{margin:4px 0}
+.wide{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}td:first-child,th:first-child{text-align:left}
+</style></head><body><main>
+<p class="who"><b>Laura Gutierrez Renjifo</b> · Senior Analyst - Energy &amp; Data Centers · <a href="https://www.linkedin.com/in/lauragutierrezrenjifo/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+<h1>Global End-use Electrical Equipment Market Model, 2026–2035</h1>
+
+<p class="sub" style="margin:0 0 10px"><b>About this project:</b> a bottom-up model of the global end-use electrical equipment market to 2035, built from IEA electricity demand data and equipment cost benchmarks, with adjustable scenarios. Model estimates global electrical equipment market size by end-use/sector, equipment used to serve new demand (growth market) and equipment used to replace existing demand (replacement market).</p>
+<p class="sub">Personal project. Views and estimates are my own.</p>
+<div class="grid kpis" id="kpis"></div>
+<div class="card ctrl grid"><div><label>Replacement rate (% of installed base a year) <output id="o1"></output><input id="rate" type="range" min="1" max="3" step="0.1" value="2"></label></div>
+<div><label>Data center equipment cost (% of base $6.3M per MW) <output id="o2"></output><input id="dc" type="range" min="60" max="140" step="5" value="100"></label></div>
+<div><label>Post-2030 annual demand additions (% of base) <output id="o3"></output><input id="post" type="range" min="50" max="150" step="5" value="100"></label></div>
+<div style="display:flex;align-items:end"><button id="reset" type="button">Reset to base case</button></div></div>
+<div class="tabs" role="group" aria-label="Chart view"><button type="button" data-v="sector" aria-pressed="true">By sector</button><button type="button" data-v="gr" aria-pressed="false">Growth vs replacement</button></div>
+<div class="card"><div class="chart"><canvas id="c" role="img" aria-label="Chart of the equipment market"></canvas></div><p class="note" id="cn"></p></div>
+<h2>Market by sector ($B)</h2><div class="card wide"><table id="tb"></table></div>
+<h2>Key takeaways</h2><div class="card"><ul><li><b>Prioritize electrical equipment for AI facilities, such as data centers:</b> data centers drive the market, with almost half of the 2026 market and most of the incremental growth (59%) by 2035.</li><li><b>Grow replacement and services business:</b> a 31% share by 2035, growing 5.8% annually (steadier than new-build demand). This is an opportunity to build or expand service, retrofit and spare-parts businesses alongside winning new projects.</li></ul><p class="note">Base-case figures; the sliders above change the scenario but not this text.</p></div>
+<h2>Method and assumptions</h2><div class="card"><ul>
+<li>Only includes electrical equipment for end-uses. Does not include utility generation, transmission &amp; distribution.</li>
+<li>Bottom-up build: IEA electricity demand by end-use sector (TWh) → convert to capacity (MW) using sector capacity factors → × electrical equipment cost per MW.</li>
+<li>New growth equipment = added MW × cost. Replacement = 2% of installed MW a year × cost (rate adjustable above).</li>
+<li>Total demand grows 3.6% a year to 2030, then rises by a constant 1,080 TWh a year to 2035 (conservative flat-rate assumption).</li>
+</ul>
+<p class="note">Sliders recompute the sector model; replacement is not re-based when additions change.</p><p class="note">Sources: IEA (Electricity, World Energy Outlook, Energy and AI); ChatGPT/Claude; Research; Analysis.</p></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const D={"sectors": ["Industry", "Cooling", "Heat Pumps", "Data Centers", "Rest of Buildings", "Transport", "Other"], "growth": [[22.892, 23.716, 24.57, 25.454, 25.133, 24.353, 24.353, 24.353, 24.353, 24.353], [3.372, 3.494, 3.62, 3.75, 3.703, 3.588, 3.588, 3.588, 3.588, 3.588], [1.431, 1.482, 1.536, 1.591, 1.571, 1.522, 1.522, 1.522, 1.522, 1.522], [75.114, 77.818, 80.62, 83.522, 82.469, 79.909, 79.909, 79.909, 79.909, 79.909], [20.865, 21.616, 22.394, 23.201, 22.908, 22.197, 22.197, 22.197, 22.197, 22.197], [3.756, 3.891, 4.031, 4.176, 4.123, 3.995, 3.995, 3.995, 3.995, 3.995], [0.668, 0.692, 0.717, 0.742, 0.733, 0.71, 0.71, 0.71, 0.71, 0.71]], "repl": [[13.735, 14.193, 14.667, 15.159, 15.668, 16.17, 16.658, 17.145, 17.632, 18.119], [5.886, 5.954, 6.024, 6.096, 6.171, 6.245, 6.317, 6.389, 6.461, 6.532], [0.468, 0.497, 0.527, 0.557, 0.589, 0.62, 0.651, 0.681, 0.712, 0.742], [6.801, 8.304, 9.86, 11.472, 13.143, 14.792, 16.39, 17.988, 19.587, 21.185], [5.964, 6.381, 6.813, 7.261, 7.725, 8.183, 8.627, 9.071, 9.515, 9.959], [0.164, 0.239, 0.317, 0.397, 0.481, 0.563, 0.643, 0.723, 0.803, 0.883], [4.37, 4.384, 4.397, 4.412, 4.427, 4.441, 4.456, 4.47, 4.484, 4.498]], "regions": ["Africa", "Americas excl. USA", "USA", "APAC excl. China", "China", "Eurasia", "Rest of Europe", "EU", "ME"], "r26": [5.1, 9.7, 42.2, 28.0, 75.4, 6.5, 6.5, 34.9, 6.1], "r35": [7.2, 13.5, 59.1, 39.3, 105.6, 9.2, 9.2, 48.9, 8.5]};const Y=[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035];
+const COL=['#3C78D8','#CC3B2F','#E0A800','#2E9B4C','#E26100','#3AA7B0','#8EAAF2'];
+let st={rate:2,dc:100,post:100,v:'sector'},ch=null;const $=id=>document.getElementById(id);
+function calc(){const G=[],R=[];for(let s=0;s<7;s++){const k=s==3?st.dc/100:1;G.push(D.growth[s].map((x,y)=>x*k*(y>=5?st.post/100:1)));R.push(D.repl[s].map(x=>x*(st.rate/2)*k));}
+const T=Y.map((_,y)=>{let t=0;for(let s=0;s<7;s++)t+=G[s][y]+R[s][y];return t});return{G,R,T}}
+const f=(x,d=1)=>x.toFixed(d);
+function render(){const{G,R,T}=calc();$('o1').textContent=f(st.rate)+'%';$('o2').textContent=st.dc+'%';$('o3').textContent=st.post+'%';
+const cagr=(Math.pow(T[9]/T[0],1/9)-1)*100,dcs=(G[3][9]+R[3][9])/T[9]*100,rs=R.reduce((a,r)=>a+r[9],0)/T[9]*100;
+$('kpis').innerHTML=[['$'+f(T[0],0)+'B','2026 market'],['$'+f(T[9],0)+'B','2035 market'],[f(cagr)+'%','CAGR 2026–35'],[f(dcs,0)+'%','Data centers, 2035 share'],[f(rs,0)+'%','Replacement, 2035 share']].map(a=>`<div class="card kpi"><b>${a[0]}</b><span>${a[1]}</span></div>`).join('');
+let h='<tr><th>$B</th>'+Y.map(y=>`<th>${y}</th>`).join('')+'</tr>';
+D.sectors.forEach((n,s)=>h+=`<tr><td>${n}</td>`+Y.map((_,y)=>`<td>${f(G[s][y]+R[s][y])}</td>`).join('')+'</tr>');
+h+='<tr><th>Total</th>'+T.map(x=>`<th>${f(x)}</th>`).join('')+'</tr>';$('tb').innerHTML=h;draw(G,R,T)}
+function draw(G,R,T){const cs=getComputedStyle(document.documentElement),fg=cs.getPropertyValue('--fg').trim(),line=cs.getPropertyValue('--line').trim();
+Chart.defaults.color=fg;Chart.defaults.borderColor=line;if(ch)ch.destroy();let cfg;
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}};
+if(st.v=='region'){cfg={type:'bar',data:{labels:D.regions,datasets:[{label:'2026',data:D.r26,backgroundColor:'#5fb0cf'},{label:'2035',data:D.r35,backgroundColor:'#e8743b'}]},options:{...base,indexAxis:'y',scales:{x:{title:{display:true,text:'$B'}}}}};
+$('cn').textContent='Supply-side reference: equipment-related share (15%) of grid and generation investment. It includes generation and transmission, so it is indicative of where capital is deployed, not of the end-use market above.'}
+else{const ds=st.v=='sector'?D.sectors.map((n,s)=>({label:n,data:Y.map((_,y)=>+(G[s][y]+R[s][y]).toFixed(2)),backgroundColor:COL[s],stack:'a'})):[{label:'New growth equipment',data:Y.map((_,y)=>+G.reduce((a,r)=>a+r[y],0).toFixed(2)),backgroundColor:'#3C78D8',stack:'a'},{label:'Replacement equipment',data:Y.map((_,y)=>+R.reduce((a,r)=>a+r[y],0).toFixed(2)),backgroundColor:'#E74C3C',stack:'a'}];
+cfg={type:'bar',data:{labels:Y,datasets:ds},options:{...base,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'$B'}}},plugins:{legend:{position:'bottom'},tooltip:{callbacks:{footer:i=>'Total: $'+f(T[i[0].dataIndex])+'B'}}}}};
+$('cn').textContent=st.v=='sector'?'Total electrical equipment market by end-use sector ($B). Data centers are the largest and most capital-intensive segment.':'New-build equipment is roughly flat after 2030 by assumption; replacement keeps rising with the installed base.'}
+ch=new Chart($('c'),cfg)}
+['rate','dc','post'].forEach(k=>$(k).addEventListener('input',e=>{st[k]=+e.target.value;render()}));
+$('reset').onclick=()=>{st.rate=2;st.dc=100;st.post=100;$('rate').value=2;$('dc').value=100;$('post').value=100;render()};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{st.v=b.dataset.v;document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
+render();
+</script></body></html>
